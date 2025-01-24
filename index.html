@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PakYows</title>
+    <style>
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    
+      background-image: url('https://raw.githubusercontent.com/MysticWaveTech/PakYows/refs/heads/main/Gemini_Generated_Image_oq80p2oq80p2oq80.jpeg');
+      background-repeat: repeat;
+      background-size: 400px 400px;
+    margin: 0;
+    color: cyan;
+}
+
+/* Control Panel Container */
+.panel {
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    
+    
+}
+
+/* Field Container */
+.field-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Increased gap between elements */
+    margin-bottom: 20px;
+}
+
+/* Field Item Styling */
+.field-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Text Field Styling */
+.field {
+    padding: 8px;
+    width: 300px;
+    margin: 5px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Larger width */
+    height: 25px; /* Height increased for larger toggle */
+    margin: 10px 0; /* Larger margins */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; /* Larger toggle button */
+    width: 18px; /* Larger toggle button */
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(15px);
+}
+
+/* Central Shape Styling */
+.central-shape {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    transition: all 0.5s ease;
+    filter: blur(5px); /* Blur effect starts on default */
+    margin-top: 100px;
+    width: 220px;
+    height: 200px;
+}
+
+/* Effects for the shape when toggles are checked */
+.effect-1 {
+    filter: none;
+}
+
+.effect-2 {
+    background: linear-gradient(90deg, red, black); /* Initial gradient */
+      
+      }
+
+.effect-3 {
+    box-shadow: 0px 20px 20px yellow; /* Shadow effect */
+}
+
+.effect-4 {
+    border: 25px solid cyan; /* Border glow effect */
+    
+}
+
+.effect-5 {
+     
+     width: 280px;
+     height: 250px;
+
+}
+
+.effect-6 {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%); /* Triangular edges */
+}
+
+.effect-7 {
+    transform: rotate(45deg); /* Rotation effect */
+}
+
+.effect-8 {
+    margin: 0px; /* Gradient fill effect */
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+/* Container for tick boxes */
+.tickboxes-container {
+    display: flex;
+    gap: 20px; /* Spacing between the checkboxes */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for each checkbox */
+.tickbox input[type="checkbox"] {
+    display: none; /* Hide default checkbox */
+}
+
+/* Style for the visual checkbox */
+.tickbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 40px;
+}
+
+/* Label styles for each checkbox */
+.tickbox input[type="checkbox"] + .label-text {
+    position: relative;
+    padding-left: 25px;
+    
+}
+
+/* Custom checkbox appearance */
+.tickbox input[type="checkbox"] + .label-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+     /* Space for custom checkbox */
+    
+}
+
+/* When checked, apply color */
+.tickbox input[type="checkbox"]:checked + .label-text::before {
+    background-color: #4CAF50; /* Green for checked */
+    border-color: #4CAF50;
+}
+
+/* Apply different colors for different tickboxes */
+#taeKwonDo:checked + .label-text::before {
+    background-color: #FF6347; /* Tomato color for Tae Kwon Do */
+    border-color: #FF6347;
+}
+
+#parkour:checked + .label-text::before {
+    background-color: #4682B4; /* SteelBlue for Parkour */
+    border-color: #4682B4;
+}
+
+#other:checked + .label-text::before {
+    background-color: #FFD700; /* Gold for Other */
+    border-color: #FFD700;
+}
+
+.button{
+    color: red;
+    padding: -5px;
+    border: 5px solid darkred;
+}
+    </style>
+</head>
+<body>
+    <p style="color: lightgreen; text-align: center; font-weight: bold;">A PakYow can be anything from sensing a surrounding, to saying a word, to doing a jump, to doing a side kick, to checking incase, to recalling moisture on your hair, to pushing as hard as you can, to preparing a landing. Just type the PakYow in the numbered field and focus on the shape. The shape will change. Your body automatically|storage the concentration. You will never loose that focus, preperation, or decision. A PakYow can be Psionic too. It could be a duck and grab.</p>
+    <div class="panel">
+        <div class="top-section">
+            
+            
+            <strong style="margin-left: -100px;">Tick to install PakYows on:</stong>
+    <label class="tickbox">
+        <input type="checkbox" id="Me" />
+        <span class="label-text" style="text-decoration: underline; color: red;">Me</span>
+    </label>
+            
+            <h2>
+                PakYows
+                
+            </h2>
+            
+            
+            
+    <div class="instructions">
+        <p>Find a quiet place unlikely to have any external interruptions. Hold absolutely still, and the first two times you correct your balance, write them down in the fields below.</p>
+        
+    </div>
+
+    <div class="field-container">
+    
+        <input type="text" class="field" id="balance1" placeholder="Balance correction 1" oninput="updateValues()">
+        <input type="text" class="field" id="balance2" placeholder="Balance correction 2" oninput="updateValues()">
+    </div>
+
+   
+
+   
+   
+   
+
+    <div class="feedback" id="feedback" style="color: lightgreen;">PakYows are subconscious movements and we show here a way to program them. Subconscious movement often use subliminal senses.</div>
+</div>
+        
+        <p style="text-align: center; font-size: 16px; color: white; font-weight: bold;">
+    Activating in:
+    <span id="displayBalance1"></span> <br> <span id="displayBalance2"></span><br>
+   Updating reflexes: (Subconscious mind)
+</p>
+        
+        <div class="tickboxes-container">
+           
+  
+        
+
+
+
+
+<script>
+    function updateValues() {
+        var balance1 = document.getElementById("balance1").value;
+        var balance2 = document.getElementById("balance2").value;
+
+        document.getElementById("displayBalance1").textContent = balance1;
+        document.getElementById("displayBalance2").textContent = balance2;
+    }
+</script>
+
+        
+       
+        <div class="field-container">
+            <!-- 8 fields with toggles -->
+            <div class="field-item">
+                <label for="field1">Field 1 for first PakYow</label>
+                <input type="text" id="field1" class="field field-1">
+                <label class="switch">
+                    <input type="checkbox" id="toggle1" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field2">Field 2 for second PakYow</label>
+                <input type="text" id="field2" class="field field-2">
+                <label class="switch">
+                    <input type="checkbox" id="toggle2" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field3">Field 3 for third PakYow</label>
+                <input type="text" id="field3" class="field field-3">
+                <label class="switch">
+                    <input type="checkbox" id="toggle3" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field4">Field 4 for fourth PakYow</label>
+                <input type="text" id="field4" class="field field-4">
+                <label class="switch">
+                    <input type="checkbox" id="toggle4" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field5">Field 5 for fifth PakYow</label>
+                <input type="text" id="field5" class="field field-5">
+                <label class="switch">
+                    <input type="checkbox" id="toggle5" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field6">Field 6 for sixth PakYow</label>
+                <input type="text" id="field6" class="field field-6">
+                <label class="switch">
+                    <input type="checkbox" id="toggle6" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field7">Field 7 for seventh PakYow</label>
+                <input type="text" id="field7" class="field field-7">
+                <label class="switch">
+                    <input type="checkbox" id="toggle7" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="field-item">
+                <label for="field8">Field 8 for 8th PakYow</label>
+                <input type="text" id="field8" class="field field-8">
+                <label class="switch">
+                    <input type="checkbox" id="toggle8" class="toggle" onchange="updateShape()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <h1 style="color: purple;">
+                
+                Focus on shape
+                
+            </h1>
+    
+    
+    <div class="central-shape" id="centralShape"></div>
+    
+    
+    
+    
+    <br><br><br><br><br><br><br><br><br>
+    
+    
+    
+    
+    <script>
+      // JavaScript to handle the toggle and effects
+
+function updateShape() {
+    const shape = document.getElementById('centralShape');
+    const toggles = [
+        document.getElementById('toggle1'),
+        document.getElementById('toggle2'),
+        document.getElementById('toggle3'),
+        document.getElementById('toggle4'),
+        document.getElementById('toggle5'),
+        document.getElementById('toggle6'),
+        document.getElementById('toggle7'),
+        document.getElementById('toggle8'),
+    ];
+
+    // Reset all effects
+    shape.classList.remove(
+        'effect-1', 'effect-2', 'effect-3', 'effect-4', 
+        'effect-5', 'effect-6', 'effect-7', 'effect-8'
+    );
+
+    // Apply effects based on toggles
+    if (toggles[0].checked) shape.classList.add('effect-1');
+    if (toggles[1].checked) shape.classList.add('effect-2');
+    if (toggles[2].checked) shape.classList.add('effect-3');
+    if (toggles[3].checked) shape.classList.add('effect-4');
+    if (toggles[4].checked) shape.classList.add('effect-5');
+    if (toggles[5].checked) shape.classList.add('effect-6');
+    if (toggles[6].checked) shape.classList.add('effect-7');
+    if (toggles[7].checked) shape.classList.add('effect-8');
+}
+
+function removePackYows(type) {
+    if (type === 'subliminal') {
+        alert('Removing all PackYows in subliminal & subconscious');
+    } else if (type === 'all') {
+        alert('Removing all PackYows');
+    }
+}
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            
+            align-items: left;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .dropdown-container {
+            margin-bottom: 30px;
+            
+        }
+        
+        .dropdown-container {
+            background-color: white;
+            color: black;
+        }
+
+        .sphere-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+            display: none; /* Initially hidden */
+        }
+
+        .sphere {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: relative;
+            margin: 10px;
+            opacity: 0; /* Start with opacity 0 */
+            transition: opacity 0.5s ease;
+        }
+
+        .red-sphere {
+            background-color: rgba(255, 0, 0, 0.5); /* Default red sphere */
+        }
+
+        .triangle {
+        margin-top: 50px;
+            width: 0;
+            height: 0;
+            border-left: -50px solid transparent;
+            border-right: 50px solid transparent;
+            
+            position: absolute;
+            top: -100%;
+            left: 75%;
+            transform: translate(-50%, 50%) rotate(-180deg); /* Rotate the triangle to point towards the center */
+        }
+
+        .cyan-triangle {
+            border-top: 100px solid cyan;
+            margin-left: -50px;
+        }
+
+        /* Decorative distinctions */
+        .distinction1 {
+            background-color: rgba(255, 0, 255, 0.5); /* Magenta */
+        }
+
+        .distinction2 {
+            background-color: rgba(0, 255, 0, 0.5); /* Green */
+        }
+
+        .distinction3 {
+            background-color: rgba(255, 255, 0, 0.5); /* Yellow */
+        }
+
+        .slider-container {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .slider-container div {
+            margin: 0 20px;
+            margin-top: 20px;
+        }
+
+        input[type="range"] {
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        button2 {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .shape-wrapper {
+            text-align: left;
+            width: 100%;
+            margin: 10px;
+        }
+        
+        
+
+        
+        
+    
+.button3 {
+    font-size: 16px;
+    border: 5px solid lightgreen;
+    background-color: cyan;
+    color: red;
+    cursor: pointer;
+    padding: 15px 30px;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 0 15px 3px yellow;
+    border-radius: 5px;
+}
+
+.button3:focus, .button3:active {
+    background-color: black; /* Turn black on click or focus */
+    color: white; /* Text turns white */
+    box-shadow: 0 0 15px 3px yellow; /* Yellow glow remains */
+}
+
+.button3:focus {
+    outline: none; /* Remove outline on focus */
+}
+        
+        
+        
+        
+        
+ 
+        input {background-color: white;}
+
+    </style>
+    
+    
+    
+    
+    <script>
+            
+      document.addEventListener("DOMContentLoaded", function() {
+    const button = document.getElementById('buttonfocus');
+
+    if (button) {
+        button.addEventListener('click', function() {
+            // Begin the swell animation
+            this.style.animation = 'swell 1s forwards';
+
+            // Start the color dissipate animation after the swelling animation is complete
+            setTimeout(() => {
+                this.style.animation = 'colorDissipate 3s forwards'; // Color dissipates over 3 seconds
+            }, 1000); // Delay the color dissipate animation by 1 second (the duration of swell)
+
+           
+        });
+    }
+});
+            
+        </script>
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    
+    
+    <div class="dropdown-container">
+        
+        
+        
+        
+        
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 18px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+
+  <h1>Create Rils to Study other athletes:</h1>
+  <p style="color: purple; font-size: bold;">Rils hunt down PakYow-like Rils in other people and collect all the information focused in the Ril. All while you are watching them train and fight. At anytime the Ril returns to update your PakYows, and then all thats left to do is focus on that focus button. At the bottom of the rils page (you will see soon).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Rils for Copying from</th>
+        <th>Build PakYows From</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monitor Tae Kwon Do athletes while watching YouTube</td>
+        <td><input type="checkbox"></td>
+      </tr>
+      <tr>
+        <td>Monitor Parkour athletes while watching YouTube</td>
+        <td><input type="checkbox"></td>
+      </tr>
+    </tbody>
+  </table>
+
+       
+        
+        
+        <br><br><br><h2><a href ="http://youtube.com">Youtube.com</a></h2><br><br><br>
+        <label for="pakYowsDropdown">Create PakYows:</label>
+        <select id="pakYowsDropdown" style="color: green; font-size: 20px;">
+            <option value="none">Select an option</option>
+            <option value="TakeKwonDo">Import Rils from Take Kwon Do athletes from YouTube</option>
+            <option value="Parkour">Import Rils from Parkour athletes from YouTube</option>
+        </select>
+    </div>
+
+    <div id="sphereContainer" class="sphere-container">
+        
+     
+        <p style="colour: lightblue; font-weight: bold;">Estimate the number of Rils that your Rils went and gathered if each Ril was just the size of only a PakYow. And then divide that number by 8 in your head rounded and each PakYow field 1-8 can have that many Rils because we rush. Unlike strictly 1 text input per PakYow at all times like before. We put heaps of Rils in each text input PakYow. The vector has charge>does not loose information.</p>
+        
+        <!-- 8 spheres with triangles -->
+        <div class="shape-wrapper">
+            <div id="sphere1" class="sphere red-sphere distinction1">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere1PakYows">Estimated Rils</label>
+            <input type="text" id="sphere1PakYows" placeholder="For first PakYow...">
+            <input type="range" id="sphere1Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere2" class="sphere red-sphere distinction2">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere2PakYows">Estimated Rils</label>
+            <input type="text" id="sphere2PakYows" placeholder="For second PakYow...">
+            <input type="range" id="sphere2Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere3" class="sphere red-sphere distinction3">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere3PakYows">Estimated Rils</label>
+            <input type="text" id="sphere3PakYows" placeholder="For third PakYow...">
+            <input type="range" id="sphere3Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere4" class="sphere red-sphere">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere4PakYows">Estimated Rils</label>
+            <input type="text" id="sphere4PakYows" placeholder="For fourth PakYow...">
+            <input type="range" id="sphere4Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere5" class="sphere red-sphere distinction1">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere5PakYows">Estimated Rils</label>
+            <input type="text" id="sphere5PakYows" placeholder="For fith PakYow...">
+            <input type="range" id="sphere5Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere6" class="sphere red-sphere distinction2">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere6PakYows">Estimated Rils</label>
+            <input type="text" id="sphere6PakYows" placeholder="For sixth PakYow...">
+            <input type="range" id="sphere6Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere7" class="sphere red-sphere distinction3">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere7PakYows">Estimated Rils</label>
+            <input type="text" id="sphere7PakYows" placeholder="For seventh PakYow...">
+            <input type="range" id="sphere7Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div>
+
+        <div class="shape-wrapper">
+            <div id="sphere8" class="sphere red-sphere">
+                <div class="triangle cyan-triangle"></div>
+            </div>
+            <label for="sphere8PakYows">Estimated Rils</label>
+            <input type="text" id="sphere8PakYows" placeholder="For 8th PakYow...">
+            <input type="range" id="sphere8Opacity" min="0" max="1" step="0.01" value="0">Create these PakYows
+        </div><br><br><br>
+        
+        
+        
+        
+        <div class="button-container">
+    <button class="button3" id="buttonfocus">Focus</button>
+    <div class="button-shapes">
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    </div>
+
+
+        
+
+
+    <script>
+        
+        
+        
+               
+
+        function updateOpacity(sliderId, sphereId) {
+            const slider = document.getElementById(sliderId);
+            const sphere = document.getElementById(sphereId);
+            const opacityValue = slider.value;
+            sphere.style.opacity = opacityValue;
+        }
+
+        // Add event listeners for opacity sliders
+        document.getElementById('sphere1Opacity').addEventListener('input', function() {
+            updateOpacity('sphere1Opacity', 'sphere1');
+        });
+
+        document.getElementById('sphere2Opacity').addEventListener('input', function() {
+            updateOpacity('sphere2Opacity', 'sphere2');
+        });
+
+        document.getElementById('sphere3Opacity').addEventListener('input', function() {
+            updateOpacity('sphere3Opacity', 'sphere3');
+        });
+
+        document.getElementById('sphere4Opacity').addEventListener('input', function() {
+            updateOpacity('sphere4Opacity', 'sphere4');
+        });
+
+        document.getElementById('sphere5Opacity').addEventListener('input', function() {
+            updateOpacity('sphere5Opacity', 'sphere5');
+        });
+
+        document.getElementById('sphere6Opacity').addEventListener('input', function() {
+            updateOpacity('sphere6Opacity', 'sphere6');
+        });
+
+        document.getElementById('sphere7Opacity').addEventListener('input', function() {
+            updateOpacity('sphere7Opacity', 'sphere7');
+        });
+
+        document.getElementById('sphere8Opacity').addEventListener('input', function() {
+            updateOpacity('sphere8Opacity', 'sphere8');
+        });
+
+        // Function to reset opacity of all shapes and sliders when dropdown changes
+        function resetShapes() {
+            const sliders = document.querySelectorAll('input[type="range"]');
+            const shapes = document.querySelectorAll('.sphere');
+            sliders.forEach(slider => slider.value = 0);
+            shapes.forEach(shape => shape.style.opacity = 0);
+        }
+
+        // Event listener for dropdown change
+        const dropdown = document.getElementById('pakYowsDropdown');
+        dropdown.addEventListener('change', function() {
+            const sphereContainer = document.getElementById('sphereContainer');
+            if (this.value !== 'none') {
+                sphereContainer.style.display = 'flex'; // Show the shapes
+            } else {
+                sphereContainer.style.display = 'none'; // Hide the shapes
+            }
+            resetShapes(); // Reset opacity and sliders when dropdown changes
+            
+            
+            
+
+            const textFields = document.querySelectorAll('input[type="text"]');
+    textFields.forEach(textField => textField.value = '');
+    
+    
+            
+            
+             const container = document.getElementById('sphereContainer');
+    container.style.transition = 'background-color 0.3s';
+    container.style.display = 'none'; // Flash color
+    setTimeout(() => {
+        container.style.display = 'block'; // Revert to original color
+    }, 300);
+            
+            
+            
+        
+});
+
+        
+        
+    </script>
+
+
+<br><br><br><br><br><br><br><br><br>
+<p style="color: yellow; font-weight: bold;">Dont forget to learn all the Rils from both menues in your PackYow, if you havent finished both already. Scroll up!<br>• Tae Kwon Do, and • Parkour</p>
+
+<br><br><br><br><br><br>
+<button id="removeSubliminalandsubconciouspakyows" class="button" onclick="removePackYows('subliminal')">Remove all PackYows in subliminal & subconscious</button>
+        <button id="removeallpakyows" class="button" onclick="removePackYows('all')">Remove all PackYows</button>
+
+<button class="button2">Vector Rils to Charge (Deplete)</button>
+
+</body>
+</html>
